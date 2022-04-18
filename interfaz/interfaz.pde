@@ -54,7 +54,7 @@ Button agregaButton(String nombre){
   return button;
 }
 void settings(){
-  size(1050,600);
+  size(displayWidth,displayHeight-50);
 }
 
 void setup(){
