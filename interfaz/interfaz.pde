@@ -29,7 +29,7 @@ Slider agregaSlider(String nombre, float min, float max, float inicial) {
 Knob agregaKnob(String nombre, float min, float max, float inicial, float radio){
   Knob knob;
   knob = cp5.addKnob(nombre).setRadius(radio).setRange(min,max).setValue(inicial);
-  knob.setPosition(100 + 250 * indiceKnob, 450);
+  knob.setPosition(250 + 400 * indiceKnob, 8*(displayHeight/10) - 50);
   knob.getCaptionLabel().setFont(font);  // cambiar fuente de la etiqueta
   knob.getCaptionLabel().setColor(0); //
   knob.getValueLabel().setFont(font);
@@ -43,7 +43,7 @@ Knob agregaKnob(String nombre, float min, float max, float inicial, float radio)
 
 Button agregaButton(String nombre){
   Button button;
-  button = cp5.addButton(nombre).setPosition(550 + 250 * indiceButton, 480).setSize(200, 50);
+  button = cp5.addButton(nombre).setPosition((displayWidth/2) + 180 + 400 * indiceButton,  8*(displayHeight/10)-20).setSize(200, 50);
   button.getCaptionLabel().setFont(font);  // cambiar fuente de la etiqueta
   button.getCaptionLabel().setColor(255); //
   button.getValueLabel().setFont(font);
@@ -80,26 +80,26 @@ void draw(){
   //CUADRO 1
   noStroke();
   fill(76,87,96);
-  rect(20, 20, 480, 380, 20);
+  rect(20, 20, (displayWidth/2) - 20, 7*(displayHeight/10) - 40, 20);
   
   //CUADRO 2
-  rect(20, 420, 480, 160, 20);
+  rect(20, 7*(displayHeight/10), (displayWidth/2) - 20, 4*(displayHeight/15) - 80, 20);
   
   //CUADRO 3
-  rect(525, 420, 500, 160, 20);
+  rect((displayWidth/2) + 20, 7*(displayHeight/10), (displayWidth/2) - 40, 4*(displayHeight/15) - 80, 20);
   
   //CUADRO 4
-  rect(525, 340, 500, 60, 20);
+  rect((displayWidth/2) + 20, 7*(displayHeight/10) - 80, (displayWidth/2) - 40, 60, 20);
   
   // CUADRO RPM
   noStroke();
   fill(114,158,161);
-  rect(670, 350, 100, 40);
+  rect((3*displayWidth/4) - 140, 7*(displayHeight/10) - 70, 100, 40);
   
   // Títulos
   textSize(14);
   fill(0);
-  text(" RPM ", 800, 380);
+  text(" RPM ", (3*displayWidth/4) - 20, 7*(displayHeight/10) - 50);
   
   //RPM
   /*String inString = myPort.readStringUntil('\n');
