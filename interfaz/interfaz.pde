@@ -9,6 +9,14 @@ float posDeseada, posReal;
 int indiceSlider = 0;
 int indiceKnob = 0;
 int indiceButton = 0;
+int maxImages=3;//numero maximo de imagenes
+int indexImg=0;
+PImage [] imagenes=new PImage[maxImages];
+PImage turbina;
+PImage [] aire=new PImage[maxImages];
+Graficas g = new Graficas(width, height, 0);
+boolean pH;
+float vol=0;
 
 Slider agregaSlider(String nombre, float min, float max, float inicial) {
   Slider slider;
@@ -67,7 +75,13 @@ void setup(){
   agregaKnob("ángulo de compuerta real", 0, 90, 45, 40);
   agregaButton("Iniciar Prueba");
   agregaButton("Paro de emergencia");
-  
+  for(int i=0; i<imagenes.length;i++){
+  imagenes[i]=loadImage("G"+i+".png");
+  aire[i]=loadImage("AIRE"+i+".png");
+  }
+  turbina=loadImage("B0.png");
+  frameRate(45);
+  imageMode(CENTER);
   /*println(Serial.list());
   
   myPort = new Serial(this, Serial.list()[0], 9600);
@@ -108,4 +122,17 @@ void draw(){
     text(inString, 715, 375);
     //println(inString);
   }*/
+  //Animacion
+  image(turbina,width/2+500,height/2-100);
+  image(imagenes[indexImg],width/2+700,height/2-100);
+  image(aire[indexImg],width/2+570,height/2-60);
+  indexImg=(indexImg+1)%imagenes.length;
+  //Graficas
+  g.Cuadricula(width-1500,height/2-400);
+  int x=width;
+  vol=-sin(x);
+  println(vol*10);
+  g.voltaje(x,vol*10,pH);
+  x+=5;
+  pH=false;
 }
