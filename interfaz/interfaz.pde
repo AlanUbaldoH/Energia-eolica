@@ -9,7 +9,7 @@ float posDeseada, posReal;
 int indiceSlider = 0;
 int indiceKnob = 0;
 int indiceButton = 0;
-int maxImages=3;//numero maximo de imagenes
+int maxImages=2;//numero maximo de imagenes
 int indexImg=0;
 PImage [] imagenes=new PImage[maxImages];
 PImage turbina;
@@ -17,6 +17,7 @@ PImage [] aire=new PImage[maxImages];
 Graficas g = new Graficas(width, height, 0);
 boolean pH;
 float vol=0;
+int x=0;
 
 Slider agregaSlider(String nombre, float min, float max, float inicial) {
   Slider slider;
@@ -80,8 +81,9 @@ void setup(){
   aire[i]=loadImage("AIRE"+i+".png");
   }
   turbina=loadImage("B0.png");
-  frameRate(45);
+  frameRate(15);
   imageMode(CENTER);
+  pH=true;
   /*println(Serial.list());
   
   myPort = new Serial(this, Serial.list()[0], 9600);
@@ -123,16 +125,17 @@ void draw(){
     //println(inString);
   }*/
   //Animacion
-  image(turbina,width/2+500,height/2-100);
+  
   image(imagenes[indexImg],width/2+700,height/2-100);
+  image(aire[indexImg],width/2+570,height/2-70);
   image(aire[indexImg],width/2+570,height/2-60);
+  image(turbina,width/2+500,height/2-100);
   indexImg=(indexImg+1)%imagenes.length;
   //Graficas
   g.Cuadricula(width-1500,height/2-400);
-  int x=width;
-  vol=-sin(x);
-  println(vol*10);
-  g.voltaje(x,vol*10,pH);
+  vol=abs(sin(x)*10);
+  println(vol);
+  g.voltaje(x,vol,pH);
   x+=5;
   pH=false;
 }
